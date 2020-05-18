@@ -4,14 +4,14 @@ This repo is for learning various heap exploitation techniques.
 We came up with the idea during a hack meeting, and have implemented the following techniques:
 
 | File | Technique | Glibc-Version |Applicable CTF Challenges | Type | bin |
-|------|-----------|---------------|--------------------------|--------------|
+|------|-----------|---------------|--------------------------|------|-----|
 | [first_fit.c](first_fit.c) | Demonstrating glibc malloc's first-fit behavior. | | |n/a| n/a|
 | [calc_tcache_idx.c](calc_tcache_idx.c) | Demonstrating glibc's tcache index calculation. | | |n/a|n/a|
 | [fastbin_dup.c](fastbin_dup.c) | Tricking malloc into returning an already-allocated heap pointer by abusing the fastbin freelist. | | |Double Free|fast|
 | [fastbin_dup_into_stack.c](glibc_2.25/fastbin_dup_into_stack.c) | Tricking malloc into returning a nearly-arbitrary pointer by abusing the fastbin freelist. | latest | [9447-search-engine](https://github.com/ctfs/write-ups-2015/tree/master/9447-ctf-2015/exploitation/search-engine), [0ctf 2017-babyheap](http://uaf.io/exploitation/2017/03/19/0ctf-Quals-2017-BabyHeap2017.html) |Double Free|fast|
 | [fastbin_dup_consolidate.c](glibc_2.25/fastbin_dup_consolidate.c) | Tricking malloc into returning an already-allocated heap pointer by putting a pointer on both fastbin freelist and unsorted bin freelist. | latest | [Hitcon 2016 SleepyHolder](https://github.com/mehQQ/public_writeup/tree/master/hitcon2016/SleepyHolder) |Double Free|fast|
 | [unsafe_unlink.c](glibc_2.26/unsafe_unlink.c) | Exploiting free on a corrupted chunk to get arbitrary write. | < 2.26 | [HITCON CTF 2014-stkof](http://acez.re/ctf-writeup-hitcon-ctf-2014-stkof-or-modern-heap-overflow/), [Insomni'hack 2017-Wheel of Robots](https://gist.github.com/niklasb/074428333b817d2ecb63f7926074427a) |Overflow in adjacent chunk|not fast|
-| [house_of_spirit.c](glibc_2.25/house_of_spirit.c) | Frees a fake fastbin chunk to get malloc to return a nearly-arbitrary pointer. | latest | [hack.lu CTF 2014-OREO](https://github.com/ctfs/write-ups-2014/tree/master/hack-lu-ctf-2014/oreo) |?|
+| [house_of_spirit.c](glibc_2.25/house_of_spirit.c) | Frees a fake fastbin chunk to get malloc to return a nearly-arbitrary pointer. | latest | [hack.lu CTF 2014-OREO](https://github.com/ctfs/write-ups-2014/tree/master/hack-lu-ctf-2014/oreo) |?|todo|
 | [poison_null_byte.c](glibc_2.25/poison_null_byte.c) | Exploiting a single null byte overflow. | < 2.26 | [PlaidCTF 2015-plaiddb](https://github.com/ctfs/write-ups-2015/tree/master/plaidctf-2015/pwnable/plaiddb) |?|todo|
 | [house_of_lore.c](glibc_2.26/house_of_lore.c) | Tricking malloc into returning a nearly-arbitrary pointer by abusing the smallbin freelist. | < 2.26 | |?|todo|
 | [overlapping_chunks.c](glibc_2.26/overlapping_chunks.c) | Exploit the overwrite of a freed chunk size in the unsorted bin in order to make a new allocation overlap with an existing chunk | < 2.26 | [hack.lu CTF 2015-bookstore](https://github.com/ctfs/write-ups-2015/tree/master/hack-lu-ctf-2015/exploiting/bookstore), [Nuit du Hack 2016-night-deamonic-heap](https://github.com/ctfs/write-ups-2016/tree/master/nuitduhack-quals-2016/exploit-me/night-deamonic-heap-400) | ? |todo|
